@@ -1,32 +1,44 @@
-# DevHub — Plateforme Michelin Vélo
+# DevHub — Projet Michelin Vélo
 
-Bienvenue. Cette plateforme déploie l'e-commerce Michelin Vélo sur **Azure AKS**, avec
-livraison continue en **GitOps via Argo CD**, exposition par **APISIX** et secrets via
-**External Secrets + Azure Key Vault**.
+Documentation **générale** du projet : une boutique e-commerce pour donner de la visibilité
+à la gamme **Michelin Vélo** auprès d'une clientèle premium (hackathon ESGI × Michelin).
 
-Vous êtes développeur d'un service (frontend ou backend) ? Vous êtes au bon endroit pour
-savoir **comment brancher votre service sur la plateforme**.
-
-## En une phrase
-
-> Vous livrez une **image Docker sur GHCR** ; vous déclarez votre service dans le repo
-> **`hackation-ops`** ; **Argo CD** le déploie et **APISIX** l'expose en HTTPS.
-
-## Par où commencer ?
+Ce hub rassemble l'essentiel transverse : présentation du projet, architecture, et comment
+livrer/déployer. **Chaque équipe complète la doc de son propre service dans son repo.**
 
 <div class="grid cards" markdown>
 
-- :material-school: **[Tutoriel : déployer votre premier service](tutorials/premier-service.md)**
-  Le parcours complet, de zéro à une URL en ligne.
+-   :material-rocket-launch:{ .lg .middle } __Le projet__
 
-- :material-wrench: **[Guides pratiques](how-to/deployer-en-prod.md)**
-  Mettre en prod, activer les previews de PR, gérer les secrets.
+    ---
 
-- :material-book-open-variant: **[Référence](reference/chart-app.md)**
-  Paramètres du chart, workflows CI, hostnames.
+    Vue d'ensemble du produit, des domaines et des repos.
 
-- :material-lightbulb: **[Explications](explanation/architecture.md)**
-  Architecture et flux GitOps de la plateforme.
+    [:octicons-arrow-right-24: Vue d'ensemble](projet/vue-ensemble.md)
+
+-   :material-school:{ .lg .middle } __Démarrer__
+
+    ---
+
+    Déployer votre premier service, de zéro à une URL en ligne.
+
+    [:octicons-arrow-right-24: Tutoriel](tutorials/premier-service.md)
+
+-   :material-wrench:{ .lg .middle } __Guides pratiques__
+
+    ---
+
+    Se connecter à Argo CD, mettre en prod, previews de PR, secrets.
+
+    [:octicons-arrow-right-24: Guides](how-to/se-connecter-argocd.md)
+
+-   :material-book-open-variant:{ .lg .middle } __Référence & archi__
+
+    ---
+
+    Paramètres du chart, workflows CI, architecture et GitOps.
+
+    [:octicons-arrow-right-24: Référence](reference/chart-app.md)
 
 </div>
 
@@ -40,6 +52,6 @@ savoir **comment brancher votre service sur la plateforme**.
 | Domaine | `*.michelin.shost.fr` |
 | Argo CD | <https://argocd.michelin.shost.fr> |
 
-!!! note "Doc globale"
-    Cette documentation décrit la **plateforme**. La doc propre à chaque service vit
-    dans le repo de ce service.
+!!! note "Portée"
+    Doc **transverse** au projet. La doc fonctionnelle/technique propre à un service
+    (frontend, back-office, API) vit dans le repo de ce service.

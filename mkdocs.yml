@@ -1,5 +1,5 @@
-site_name: DevHub — Plateforme Michelin Vélo
-site_description: Onboarding développeur, GitOps et déploiement sur la plateforme du hackathon.
+site_name: DevHub — Projet Michelin Vélo
+site_description: Documentation générale du projet e-commerce Michelin Vélo — produit, architecture, déploiement et contribution.
 site_url: https://hackaton-esgi-x-michelin.github.io/devhub/
 docs_dir: docs
 
@@ -27,17 +27,26 @@ theme:
 
 markdown_extensions:
   - admonition
+  - attr_list
+  - md_in_html
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - toc:
       permalink: true
 
 nav:
   - Accueil: index.md
+  - Le projet:
+      - Vue d'ensemble: projet/vue-ensemble.md
+      - Organisation des repos: projet/repos.md
   - Tutoriels:
       - Déployer votre premier service: tutorials/premier-service.md
   - Guides pratiques:
+      - Se connecter à Argo CD: how-to/se-connecter-argocd.md
       - Mettre un service en prod: how-to/deployer-en-prod.md
       - Activer les previews de PR: how-to/previews-pr.md
       - Gérer les secrets: how-to/secrets.md
