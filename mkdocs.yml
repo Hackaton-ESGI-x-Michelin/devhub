@@ -1,0 +1,50 @@
+site_name: DevHub — Plateforme Michelin Vélo
+site_description: Onboarding développeur, GitOps et déploiement sur la plateforme du hackathon.
+site_url: https://hackaton-esgi-x-michelin.github.io/devhub/
+docs_dir: docs
+
+theme:
+  name: material
+  language: fr
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Mode sombre
+    - scheme: slate
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Mode clair
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - toc:
+      permalink: true
+
+nav:
+  - Accueil: index.md
+  - Tutoriels:
+      - Déployer votre premier service: tutorials/premier-service.md
+  - Guides pratiques:
+      - Mettre un service en prod: how-to/deployer-en-prod.md
+      - Activer les previews de PR: how-to/previews-pr.md
+      - Gérer les secrets: how-to/secrets.md
+  - Référence:
+      - Workflows CI réutilisables: reference/ci-workflows.md
+      - Chart Helm « app »: reference/chart-app.md
+      - Hostnames & DNS: reference/hostnames.md
+  - Explications:
+      - Architecture de la plateforme: explanation/architecture.md
+      - GitOps & flux de déploiement: explanation/gitops.md
