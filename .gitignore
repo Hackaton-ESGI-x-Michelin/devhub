@@ -1,3 +1,7 @@
 site/
 .venv/
 __pycache__/
+
+# Structurizr Lite/Local runtime cache + generated workspace
+diagrams/structurizr/.structurizr/
+diagrams/structurizr/workspace.json

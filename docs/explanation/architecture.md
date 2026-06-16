@@ -35,4 +35,10 @@ En tant que dev, vous interagissez avec : **votre repo** (code + Dockerfile + CI
 **`hackation-ops`** (déclaration de votre service en GitOps). Vous ne touchez pas au socle
 Terraform.
 
+## Schémas détaillés
+
+- [Modèle C4 (diagrammes)](c4.md) — contexte, conteneurs et composants.
+- [Schémas d'infrastructure](infrastructure.md) — ressources Azure, topologie
+  Kubernetes, cheminement TLS d'une requête et pipeline CI/CD.
+
 Voir aussi : [GitOps & flux de déploiement](gitops.md).
