@@ -1,0 +1,1257 @@
+{
+  "configuration" : { },
+  "description" : "Modèle C4 de la plateforme e-commerce Michelin Vélo (hackathon ESGI × Michelin).",
+  "documentation" : { },
+  "id" : 1,
+  "lastModifiedDate" : "2026-06-16T09:53:01Z",
+  "model" : {
+    "deploymentNodes" : [ {
+      "children" : [ {
+        "children" : [ {
+          "children" : [ {
+            "containerInstances" : [ {
+              "containerId" : "12",
+              "environment" : "Production",
+              "id" : "66",
+              "instanceId" : 1,
+              "properties" : {
+                "structurizr.dsl.identifier" : "apisixInst"
+              },
+              "relationships" : [ {
+                "description" : "michelin.shost.fr",
+                "destinationId" : "68",
+                "id" : "69",
+                "linkedRelationshipId" : "35",
+                "sourceId" : "66",
+                "technology" : "HTTP"
+              }, {
+                "description" : "admin.michelin.shost.fr",
+                "destinationId" : "70",
+                "id" : "71",
+                "linkedRelationshipId" : "36",
+                "sourceId" : "66",
+                "technology" : "HTTP"
+              }, {
+                "description" : "api.michelin.shost.fr",
+                "destinationId" : "72",
+                "id" : "73",
+                "linkedRelationshipId" : "37",
+                "sourceId" : "66",
+                "technology" : "HTTP"
+              }, {
+                "description" : "argocd.michelin.shost.fr",
+                "destinationId" : "78",
+                "id" : "79",
+                "linkedRelationshipId" : "38",
+                "sourceId" : "66",
+                "technology" : "HTTP"
+              } ],
+              "tags" : "Container Instance"
+            } ],
+            "environment" : "Production",
+            "id" : "65",
+            "instances" : "1",
+            "name" : "namespace: apisix",
+            "properties" : {
+              "structurizr.dsl.identifier" : "ae22e3b3-c70f-428e-b4df-3cc5fda58715"
+            },
+            "tags" : "Element,Deployment Node"
+          }, {
+            "containerInstances" : [ {
+              "containerId" : "9",
+              "environment" : "Production",
+              "id" : "68",
+              "instanceId" : 1,
+              "properties" : {
+                "structurizr.dsl.identifier" : "sfInst"
+              },
+              "relationships" : [ {
+                "description" : "Appels API",
+                "destinationId" : "72",
+                "id" : "74",
+                "linkedRelationshipId" : "39",
+                "sourceId" : "68",
+                "technology" : "HTTPS"
+              } ],
+              "tags" : "Container Instance"
+            }, {
+              "containerId" : "10",
+              "environment" : "Production",
+              "id" : "70",
+              "instanceId" : 1,
+              "properties" : {
+                "structurizr.dsl.identifier" : "boInst"
+              },
+              "tags" : "Container Instance"
+            }, {
+              "containerId" : "11",
+              "environment" : "Production",
+              "id" : "72",
+              "instanceId" : 1,
+              "properties" : {
+                "structurizr.dsl.identifier" : "apiInst"
+              },
+              "tags" : "Container Instance"
+            }, {
+              "containerId" : "22",
+              "environment" : "Production",
+              "id" : "75",
+              "instanceId" : 1,
+              "properties" : {
+                "structurizr.dsl.identifier" : "roInst"
+              },
+              "relationships" : [ {
+                "description" : "Pilote le canari",
+                "destinationId" : "72",
+                "id" : "76",
+                "linkedRelationshipId" : "44",
+                "sourceId" : "75"
+              } ],
+              "tags" : "Container Instance"
+            } ],
+            "environment" : "Production",
+            "id" : "67",
+            "instances" : "1",
+            "name" : "namespace: prod",
+            "properties" : {
+              "structurizr.dsl.identifier" : "93e599f9-6876-4e28-9465-a599f2b90aa0"
+            },
+            "tags" : "Element,Deployment Node"
+          }, {
+            "containerInstances" : [ {
+              "containerId" : "15",
+              "environment" : "Production",
+              "id" : "78",
+              "instanceId" : 1,
+              "properties" : {
+                "structurizr.dsl.identifier" : "argoInst"
+              },
+              "relationships" : [ {
+                "description" : "Applique les manifests",
+                "destinationId" : "68",
+                "id" : "80",
+                "linkedRelationshipId" : "40",
+                "sourceId" : "78"
+              }, {
+                "description" : "Applique les manifests",
+                "destinationId" : "70",
+                "id" : "81",
+                "linkedRelationshipId" : "41",
+                "sourceId" : "78"
+              }, {
+                "description" : "Applique les manifests",
+                "destinationId" : "72",
+                "id" : "82",
+                "linkedRelationshipId" : "42",
+                "sourceId" : "78"
+              } ],
+              "tags" : "Container Instance"
+            } ],
+            "environment" : "Production",
+            "id" : "77",
+            "instances" : "1",
+            "name" : "namespace: argocd",
+            "properties" : {
+              "structurizr.dsl.identifier" : "ac70d003-5469-4c67-9b57-40efec7ca47e"
+            },
+            "tags" : "Element,Deployment Node"
+          }, {
+            "containerInstances" : [ {
+              "containerId" : "13",
+              "environment" : "Production",
+              "id" : "84",
+              "instanceId" : 1,
+              "properties" : {
+                "structurizr.dsl.identifier" : "cmInst"
+              },
+              "relationships" : [ {
+                "description" : "Fournit le certificat wildcard",
+                "destinationId" : "66",
+                "id" : "85",
+                "linkedRelationshipId" : "46",
+                "sourceId" : "84"
+              } ],
+              "tags" : "Container Instance"
+            }, {
+              "containerId" : "14",
+              "environment" : "Production",
+              "id" : "86",
+              "instanceId" : 1,
+              "properties" : {
+                "structurizr.dsl.identifier" : "esoInst"
+              },
+              "relationships" : [ {
+                "description" : "Matérialise les Secrets K8s",
+                "destinationId" : "72",
+                "id" : "87",
+                "linkedRelationshipId" : "48",
+                "sourceId" : "86"
+              }, {
+                "description" : "Workload Identity",
+                "destinationId" : "88",
+                "id" : "98",
+                "sourceId" : "86",
+                "tags" : "Relationship"
+              } ],
+              "tags" : "Container Instance"
+            } ],
+            "environment" : "Production",
+            "id" : "83",
+            "instances" : "1",
+            "name" : "namespaces plateforme",
+            "properties" : {
+              "structurizr.dsl.identifier" : "0dd0659b-3dc7-48fc-b3eb-cc2b970b9838"
+            },
+            "tags" : "Element,Deployment Node"
+          } ],
+          "environment" : "Production",
+          "id" : "64",
+          "instances" : "1",
+          "name" : "AKS — aks-hack-we-01",
+          "properties" : {
+            "structurizr.dsl.identifier" : "fc59f058-d469-4a76-b5ac-88496614979b"
+          },
+          "tags" : "Element,Deployment Node",
+          "technology" : "Kubernetes (plan Free, OIDC + Workload Identity)"
+        } ],
+        "environment" : "Production",
+        "id" : "63",
+        "infrastructureNodes" : [ {
+          "description" : "Secrets app + GHCR (RBAC, Workload Identity).",
+          "environment" : "Production",
+          "id" : "88",
+          "name" : "Azure Key Vault",
+          "properties" : {
+            "structurizr.dsl.identifier" : "kvNode"
+          },
+          "tags" : "Element,Infrastructure Node",
+          "technology" : "Azure"
+        } ],
+        "instances" : "1",
+        "name" : "rg-hack-aks-we-01",
+        "properties" : {
+          "structurizr.dsl.identifier" : "4dca3674-3973-4e30-8b65-4188e8e300e1"
+        },
+        "tags" : "Element,Deployment Node",
+        "technology" : "Resource Group"
+      }, {
+        "children" : [ {
+          "description" : "Standard_D2s_v4 · autoscale 2→3 · Ubuntu",
+          "environment" : "Production",
+          "id" : "90",
+          "instances" : "1",
+          "name" : "VMSS — pool system",
+          "properties" : {
+            "structurizr.dsl.identifier" : "1612bf88-b72b-48e6-b047-54101ceb5a0e"
+          },
+          "tags" : "Element,Deployment Node"
+        } ],
+        "environment" : "Production",
+        "id" : "89",
+        "infrastructureNodes" : [ {
+          "environment" : "Production",
+          "id" : "91",
+          "name" : "Standard Load Balancer",
+          "properties" : {
+            "structurizr.dsl.identifier" : "lbNode"
+          },
+          "relationships" : [ {
+            "description" : "Trafic 443",
+            "destinationId" : "66",
+            "id" : "97",
+            "sourceId" : "91",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Infrastructure Node",
+          "technology" : "Azure"
+        }, {
+          "description" : "pip-hack-apisix-we-01 · 20.160.228.31",
+          "environment" : "Production",
+          "id" : "92",
+          "name" : "IP publique statique",
+          "properties" : {
+            "structurizr.dsl.identifier" : "pipNode"
+          },
+          "relationships" : [ {
+            "description" : "Front-end LB",
+            "destinationId" : "91",
+            "id" : "96",
+            "sourceId" : "92",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Infrastructure Node",
+          "technology" : "Azure"
+        } ],
+        "instances" : "1",
+        "name" : "rg-hack-aks-nodes-we-01",
+        "properties" : {
+          "structurizr.dsl.identifier" : "5859b25b-b0cf-4470-9d07-f60a6229ca5a"
+        },
+        "tags" : "Element,Deployment Node",
+        "technology" : "Resource Group (géré par AKS)"
+      } ],
+      "environment" : "Production",
+      "id" : "62",
+      "instances" : "1",
+      "name" : "Microsoft Azure — West Europe",
+      "properties" : {
+        "structurizr.dsl.identifier" : "a9d750b8-0d0d-4e23-a1bc-e827503e6269"
+      },
+      "tags" : "Element,Deployment Node",
+      "technology" : "Azure"
+    }, {
+      "environment" : "Production",
+      "id" : "93",
+      "infrastructureNodes" : [ {
+        "description" : "A michelin.shost.fr + *.michelin.shost.fr.",
+        "environment" : "Production",
+        "id" : "94",
+        "name" : "Cloudflare DNS",
+        "properties" : {
+          "structurizr.dsl.identifier" : "cfNode"
+        },
+        "relationships" : [ {
+          "description" : "Résout vers",
+          "destinationId" : "92",
+          "id" : "95",
+          "sourceId" : "94",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Infrastructure Node",
+        "technology" : "External"
+      } ],
+      "instances" : "1",
+      "name" : "Cloudflare",
+      "properties" : {
+        "structurizr.dsl.identifier" : "1491040f-c5ac-4a96-92c9-c7b82aa2b65e"
+      },
+      "tags" : "Element,Deployment Node,External",
+      "technology" : "DNS (DNS-only)"
+    } ],
+    "people" : [ {
+      "description" : "Achète des produits de la gamme Michelin Vélo.",
+      "id" : "1",
+      "name" : "Client",
+      "properties" : {
+        "structurizr.dsl.identifier" : "client"
+      },
+      "relationships" : [ {
+        "description" : "Navigue et achète",
+        "destinationId" : "8",
+        "id" : "24",
+        "sourceId" : "1",
+        "tags" : "Relationship",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "HTTPS",
+        "destinationId" : "12",
+        "id" : "32",
+        "sourceId" : "1",
+        "tags" : "Relationship",
+        "technology" : "443"
+      } ],
+      "tags" : "Element,Person"
+    }, {
+      "description" : "Gère le catalogue, les commandes et le contenu.",
+      "id" : "2",
+      "name" : "Administrateur",
+      "properties" : {
+        "structurizr.dsl.identifier" : "admin"
+      },
+      "relationships" : [ {
+        "description" : "Administre",
+        "destinationId" : "8",
+        "id" : "25",
+        "sourceId" : "2",
+        "tags" : "Relationship",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "HTTPS",
+        "destinationId" : "12",
+        "id" : "33",
+        "sourceId" : "2",
+        "tags" : "Relationship",
+        "technology" : "443"
+      } ],
+      "tags" : "Element,Person"
+    }, {
+      "description" : "Livre le code et opère la plateforme.",
+      "id" : "3",
+      "name" : "Développeur / DevOps",
+      "properties" : {
+        "structurizr.dsl.identifier" : "dev"
+      },
+      "relationships" : [ {
+        "description" : "Push, Pull Requests",
+        "destinationId" : "6",
+        "id" : "26",
+        "sourceId" : "3",
+        "tags" : "Relationship",
+        "technology" : "git"
+      }, {
+        "description" : "Opère via Argo CD",
+        "destinationId" : "8",
+        "id" : "27",
+        "sourceId" : "3",
+        "tags" : "Relationship",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Accède à l'UI Argo CD",
+        "destinationId" : "12",
+        "id" : "34",
+        "sourceId" : "3",
+        "tags" : "Relationship",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Login SSO GitHub",
+        "destinationId" : "21",
+        "id" : "60",
+        "sourceId" : "3",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Login SSO GitHub",
+        "destinationId" : "15",
+        "id" : "61",
+        "linkedRelationshipId" : "60",
+        "sourceId" : "3"
+      } ],
+      "tags" : "Element,Person"
+    } ],
+    "softwareSystems" : [ {
+      "description" : "Résolution DNS de *.michelin.shost.fr (DNS-only).",
+      "documentation" : { },
+      "id" : "4",
+      "name" : "Cloudflare DNS",
+      "properties" : {
+        "structurizr.dsl.identifier" : "cloudflare"
+      },
+      "relationships" : [ {
+        "description" : "A → IP publique APISIX",
+        "destinationId" : "12",
+        "id" : "51",
+        "sourceId" : "4",
+        "tags" : "Relationship",
+        "technology" : "DNS"
+      }, {
+        "description" : "A → IP publique APISIX",
+        "destinationId" : "8",
+        "id" : "52",
+        "linkedRelationshipId" : "51",
+        "sourceId" : "4",
+        "technology" : "DNS"
+      } ],
+      "tags" : "Element,Software System,External"
+    }, {
+      "description" : "Autorité de certification ACME (TLS).",
+      "documentation" : { },
+      "id" : "5",
+      "name" : "Let's Encrypt",
+      "properties" : {
+        "structurizr.dsl.identifier" : "letsencrypt"
+      },
+      "tags" : "Element,Software System,External"
+    }, {
+      "description" : "Code, CI/CD (Actions) et registre d'images privé.",
+      "documentation" : { },
+      "id" : "6",
+      "name" : "GitHub + GHCR",
+      "properties" : {
+        "structurizr.dsl.identifier" : "github"
+      },
+      "tags" : "Element,Software System,External"
+    }, {
+      "description" : "AKS, Key Vault, identité managée.",
+      "documentation" : { },
+      "id" : "7",
+      "name" : "Microsoft Azure",
+      "properties" : {
+        "structurizr.dsl.identifier" : "azure"
+      },
+      "tags" : "Element,Software System,External"
+    }, {
+      "containers" : [ {
+        "description" : "Boutique client.",
+        "documentation" : { },
+        "id" : "9",
+        "name" : "Storefront",
+        "properties" : {
+          "structurizr.dsl.identifier" : "storefront"
+        },
+        "relationships" : [ {
+          "description" : "Appels API",
+          "destinationId" : "11",
+          "id" : "39",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "HTTPS"
+        }, {
+          "description" : "Pull image",
+          "destinationId" : "6",
+          "id" : "49",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "HTTPS"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "Next.js (standalone, :3000)"
+      }, {
+        "description" : "Administration.",
+        "documentation" : { },
+        "id" : "10",
+        "name" : "Back-office",
+        "properties" : {
+          "structurizr.dsl.identifier" : "backoffice"
+        },
+        "tags" : "Element,Container",
+        "technology" : "Frontend (:80)"
+      }, {
+        "description" : "Données, commandes, paiement.",
+        "documentation" : { },
+        "id" : "11",
+        "name" : "API",
+        "properties" : {
+          "structurizr.dsl.identifier" : "api"
+        },
+        "relationships" : [ {
+          "description" : "Pull image",
+          "destinationId" : "6",
+          "id" : "50",
+          "sourceId" : "11",
+          "tags" : "Relationship",
+          "technology" : "HTTPS"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "Backend (:8080)"
+      }, {
+        "description" : "Gateway/ingress unique : terminaison TLS, routage par hôte.",
+        "documentation" : { },
+        "id" : "12",
+        "name" : "APISIX",
+        "properties" : {
+          "structurizr.dsl.identifier" : "apisix"
+        },
+        "relationships" : [ {
+          "description" : "michelin.shost.fr",
+          "destinationId" : "9",
+          "id" : "35",
+          "sourceId" : "12",
+          "tags" : "Relationship",
+          "technology" : "HTTP"
+        }, {
+          "description" : "admin.michelin.shost.fr",
+          "destinationId" : "10",
+          "id" : "36",
+          "sourceId" : "12",
+          "tags" : "Relationship",
+          "technology" : "HTTP"
+        }, {
+          "description" : "api.michelin.shost.fr",
+          "destinationId" : "11",
+          "id" : "37",
+          "sourceId" : "12",
+          "tags" : "Relationship",
+          "technology" : "HTTP"
+        }, {
+          "description" : "argocd.michelin.shost.fr",
+          "destinationId" : "15",
+          "id" : "38",
+          "sourceId" : "12",
+          "tags" : "Relationship",
+          "technology" : "HTTP"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "Apache APISIX (Helm)"
+      }, {
+        "description" : "Émet le certificat wildcard Let's Encrypt (DNS-01).",
+        "documentation" : { },
+        "id" : "13",
+        "name" : "cert-manager",
+        "properties" : {
+          "structurizr.dsl.identifier" : "certmgr"
+        },
+        "relationships" : [ {
+          "description" : "Émet/renouvelle",
+          "destinationId" : "5",
+          "id" : "45",
+          "sourceId" : "13",
+          "tags" : "Relationship",
+          "technology" : "ACME DNS-01"
+        }, {
+          "description" : "Fournit le certificat wildcard",
+          "destinationId" : "12",
+          "id" : "46",
+          "sourceId" : "13",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "jetstack (Helm)"
+      }, {
+        "description" : "Synchronise Azure Key Vault → Secrets Kubernetes.",
+        "documentation" : { },
+        "id" : "14",
+        "name" : "External Secrets",
+        "properties" : {
+          "structurizr.dsl.identifier" : "eso"
+        },
+        "relationships" : [ {
+          "description" : "Lit les secrets",
+          "destinationId" : "23",
+          "id" : "47",
+          "sourceId" : "14",
+          "tags" : "Relationship",
+          "technology" : "Workload Identity"
+        }, {
+          "description" : "Matérialise les Secrets K8s",
+          "destinationId" : "11",
+          "id" : "48",
+          "sourceId" : "14",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "ESO (Helm)"
+      }, {
+        "components" : [ {
+          "description" : "App-of-apps : déclare les ApplicationSets.",
+          "documentation" : { },
+          "id" : "16",
+          "name" : "platform-root",
+          "properties" : {
+            "structurizr.dsl.identifier" : "root"
+          },
+          "relationships" : [ {
+            "description" : "Déclare",
+            "destinationId" : "17",
+            "id" : "53",
+            "sourceId" : "16",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Déclare",
+            "destinationId" : "18",
+            "id" : "54",
+            "sourceId" : "16",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Liste : storefront / back-office / api → namespace prod.",
+          "documentation" : { },
+          "id" : "17",
+          "name" : "ApplicationSet prod",
+          "properties" : {
+            "structurizr.dsl.identifier" : "appsetProd"
+          },
+          "relationships" : [ {
+            "description" : "Génère les Applications prod",
+            "destinationId" : "19",
+            "id" : "55",
+            "sourceId" : "17",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Générateur Pull Request → namespaces pr-<n>.",
+          "documentation" : { },
+          "id" : "18",
+          "name" : "ApplicationSet previews",
+          "properties" : {
+            "structurizr.dsl.identifier" : "appsetPrev"
+          },
+          "relationships" : [ {
+            "description" : "Génère les Applications preview",
+            "destinationId" : "19",
+            "id" : "56",
+            "sourceId" : "18",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Sync + selfHeal du cluster vers Git.",
+          "documentation" : { },
+          "id" : "19",
+          "name" : "Application Controller",
+          "properties" : {
+            "structurizr.dsl.identifier" : "appCtrl"
+          },
+          "relationships" : [ {
+            "description" : "Demande les manifests rendus",
+            "destinationId" : "20",
+            "id" : "58",
+            "sourceId" : "19",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Applique (sync/selfHeal)",
+            "destinationId" : "11",
+            "id" : "59",
+            "sourceId" : "19",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "Clone le repo GitOps et rend les manifests Helm.",
+          "documentation" : { },
+          "id" : "20",
+          "name" : "Repo Server",
+          "properties" : {
+            "structurizr.dsl.identifier" : "repoServer"
+          },
+          "relationships" : [ {
+            "description" : "Clone + rend Helm",
+            "destinationId" : "6",
+            "id" : "57",
+            "sourceId" : "20",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "description" : "SSO GitHub (membres de l'org).",
+          "documentation" : { },
+          "id" : "21",
+          "name" : "Dex",
+          "properties" : {
+            "structurizr.dsl.identifier" : "dex"
+          },
+          "tags" : "Element,Component"
+        } ],
+        "description" : "Réconciliation GitOps des applications.",
+        "documentation" : { },
+        "id" : "15",
+        "name" : "Argo CD",
+        "properties" : {
+          "structurizr.dsl.identifier" : "argocd"
+        },
+        "relationships" : [ {
+          "description" : "Applique les manifests",
+          "destinationId" : "9",
+          "id" : "40",
+          "sourceId" : "15",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Applique les manifests",
+          "destinationId" : "10",
+          "id" : "41",
+          "sourceId" : "15",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Applique les manifests",
+          "destinationId" : "11",
+          "id" : "42",
+          "sourceId" : "15",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Réconcilie depuis le repo GitOps",
+          "destinationId" : "6",
+          "id" : "43",
+          "sourceId" : "15",
+          "tags" : "Relationship",
+          "technology" : "HTTPS"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "argo-cd (Helm)"
+      }, {
+        "description" : "Déploiement progressif canari (25/50/100 %).",
+        "documentation" : { },
+        "id" : "22",
+        "name" : "Argo Rollouts",
+        "properties" : {
+          "structurizr.dsl.identifier" : "rollouts"
+        },
+        "relationships" : [ {
+          "description" : "Pilote le canari",
+          "destinationId" : "11",
+          "id" : "44",
+          "sourceId" : "22",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "argo-rollouts (Helm)"
+      }, {
+        "description" : "Secrets applicatifs + credentials GHCR.",
+        "documentation" : { },
+        "id" : "23",
+        "name" : "Azure Key Vault",
+        "properties" : {
+          "structurizr.dsl.identifier" : "keyvaultDb"
+        },
+        "tags" : "Element,Container,Database",
+        "technology" : "Azure (PaaS)"
+      } ],
+      "description" : "Boutique e-commerce premium livrée en continu sur AKS.",
+      "documentation" : { },
+      "id" : "8",
+      "name" : "Plateforme Michelin Vélo",
+      "properties" : {
+        "structurizr.dsl.identifier" : "shop"
+      },
+      "relationships" : [ {
+        "description" : "Est résolu via",
+        "destinationId" : "4",
+        "id" : "28",
+        "sourceId" : "8",
+        "tags" : "Relationship",
+        "technology" : "DNS"
+      }, {
+        "description" : "Obtient ses certificats",
+        "destinationId" : "5",
+        "id" : "29",
+        "sourceId" : "8",
+        "tags" : "Relationship",
+        "technology" : "ACME DNS-01"
+      }, {
+        "description" : "Tire images et manifests GitOps",
+        "destinationId" : "6",
+        "id" : "30",
+        "sourceId" : "8",
+        "tags" : "Relationship",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "S'exécute sur / lit ses secrets",
+        "destinationId" : "7",
+        "id" : "31",
+        "sourceId" : "8",
+        "tags" : "Relationship",
+        "technology" : "API Azure"
+      } ],
+      "tags" : "Element,Software System"
+    } ]
+  },
+  "name" : "Michelin Vélo",
+  "properties" : {
+    "structurizr.inspection.error" : "45",
+    "structurizr.dsl" : "d29ya3NwYWNlICJNaWNoZWxpbiBWw6lsbyIgIk1vZMOobGUgQzQgZGUgbGEgcGxhdGVmb3JtZSBlLWNvbW1lcmNlIE1pY2hlbGluIFbDqWxvIChoYWNrYXRob24gRVNHSSDDlyBNaWNoZWxpbikuIiB7CgogICAgbW9kZWwgewogICAgICAgIC8vIC0tLSBQZXJzb25uZXMgLS0tCiAgICAgICAgY2xpZW50ID0gcGVyc29uICJDbGllbnQiICJBY2jDqHRlIGRlcyBwcm9kdWl0cyBkZSBsYSBnYW1tZSBNaWNoZWxpbiBWw6lsby4iCiAgICAgICAgYWRtaW4gID0gcGVyc29uICJBZG1pbmlzdHJhdGV1ciIgIkfDqHJlIGxlIGNhdGFsb2d1ZSwgbGVzIGNvbW1hbmRlcyBldCBsZSBjb250ZW51LiIKICAgICAgICBkZXYgICAgPSBwZXJzb24gIkTDqXZlbG9wcGV1ciAvIERldk9wcyIgIkxpdnJlIGxlIGNvZGUgZXQgb3DDqHJlIGxhIHBsYXRlZm9ybWUuIgoKICAgICAgICAvLyAtLS0gU3lzdMOobWVzIGV4dGVybmVzIC0tLQogICAgICAgIGNsb3VkZmxhcmUgID0gc29mdHdhcmVTeXN0ZW0gIkNsb3VkZmxhcmUgRE5TIiAiUsOpc29sdXRpb24gRE5TIGRlICoubWljaGVsaW4uc2hvc3QuZnIgKEROUy1vbmx5KS4iICJFeHRlcm5hbCIKICAgICAgICBsZXRzZW5jcnlwdCA9IHNvZnR3YXJlU3lzdGVtICJMZXQncyBFbmNyeXB0IiAiQXV0b3JpdMOpIGRlIGNlcnRpZmljYXRpb24gQUNNRSAoVExTKS4iICJFeHRlcm5hbCIKICAgICAgICBnaXRodWIgICAgICA9IHNvZnR3YXJlU3lzdGVtICJHaXRIdWIgKyBHSENSIiAiQ29kZSwgQ0kvQ0QgKEFjdGlvbnMpIGV0IHJlZ2lzdHJlIGQnaW1hZ2VzIHByaXbDqS4iICJFeHRlcm5hbCIKICAgICAgICBhenVyZSAgICAgICA9IHNvZnR3YXJlU3lzdGVtICJNaWNyb3NvZnQgQXp1cmUiICJBS1MsIEtleSBWYXVsdCwgaWRlbnRpdMOpIG1hbmFnw6llLiIgIkV4dGVybmFsIgoKICAgICAgICAvLyAtLS0gU3lzdMOobWUgcHJpbmNpcGFsIC0tLQogICAgICAgIHNob3AgPSBzb2Z0d2FyZVN5c3RlbSAiUGxhdGVmb3JtZSBNaWNoZWxpbiBWw6lsbyIgIkJvdXRpcXVlIGUtY29tbWVyY2UgcHJlbWl1bSBsaXZyw6llIGVuIGNvbnRpbnUgc3VyIEFLUy4iIHsKCiAgICAgICAgICAgIHN0b3JlZnJvbnQgPSBjb250YWluZXIgIlN0b3JlZnJvbnQiICJCb3V0aXF1ZSBjbGllbnQuIiAiTmV4dC5qcyAoc3RhbmRhbG9uZSwgOjMwMDApIgogICAgICAgICAgICBiYWNrb2ZmaWNlID0gY29udGFpbmVyICJCYWNrLW9mZmljZSIgIkFkbWluaXN0cmF0aW9uLiIgIkZyb250ZW5kICg6ODApIgogICAgICAgICAgICBhcGkgICAgICAgID0gY29udGFpbmVyICJBUEkiICJEb25uw6llcywgY29tbWFuZGVzLCBwYWllbWVudC4iICJCYWNrZW5kICg6ODA4MCkiCgogICAgICAgICAgICBhcGlzaXggICAgID0gY29udGFpbmVyICJBUElTSVgiICJHYXRld2F5L2luZ3Jlc3MgdW5pcXVlIDogdGVybWluYWlzb24gVExTLCByb3V0YWdlIHBhciBow7R0ZS4iICJBcGFjaGUgQVBJU0lYIChIZWxtKSIKICAgICAgICAgICAgY2VydG1nciAgICA9IGNvbnRhaW5lciAiY2VydC1tYW5hZ2VyIiAiw4ltZXQgbGUgY2VydGlmaWNhdCB3aWxkY2FyZCBMZXQncyBFbmNyeXB0IChETlMtMDEpLiIgImpldHN0YWNrIChIZWxtKSIKICAgICAgICAgICAgZXNvICAgICAgICA9IGNvbnRhaW5lciAiRXh0ZXJuYWwgU2VjcmV0cyIgIlN5bmNocm9uaXNlIEF6dXJlIEtleSBWYXVsdCDihpIgU2VjcmV0cyBLdWJlcm5ldGVzLiIgIkVTTyAoSGVsbSkiCgogICAgICAgICAgICBhcmdvY2QgICAgID0gY29udGFpbmVyICJBcmdvIENEIiAiUsOpY29uY2lsaWF0aW9uIEdpdE9wcyBkZXMgYXBwbGljYXRpb25zLiIgImFyZ28tY2QgKEhlbG0pIiB7CiAgICAgICAgICAgICAgICByb290ICAgICAgID0gY29tcG9uZW50ICJwbGF0Zm9ybS1yb290IiAiQXBwLW9mLWFwcHMgOiBkw6ljbGFyZSBsZXMgQXBwbGljYXRpb25TZXRzLiIKICAgICAgICAgICAgICAgIGFwcHNldFByb2QgPSBjb21wb25lbnQgIkFwcGxpY2F0aW9uU2V0IHByb2QiICJMaXN0ZSA6IHN0b3JlZnJvbnQgLyBiYWNrLW9mZmljZSAvIGFwaSDihpIgbmFtZXNwYWNlIHByb2QuIgogICAgICAgICAgICAgICAgYXBwc2V0UHJldiA9IGNvbXBvbmVudCAiQXBwbGljYXRpb25TZXQgcHJldmlld3MiICJHw6luw6lyYXRldXIgUHVsbCBSZXF1ZXN0IOKGkiBuYW1lc3BhY2VzIHByLTxuPi4iCiAgICAgICAgICAgICAgICBhcHBDdHJsICAgID0gY29tcG9uZW50ICJBcHBsaWNhdGlvbiBDb250cm9sbGVyIiAiU3luYyArIHNlbGZIZWFsIGR1IGNsdXN0ZXIgdmVycyBHaXQuIgogICAgICAgICAgICAgICAgcmVwb1NlcnZlciA9IGNvbXBvbmVudCAiUmVwbyBTZXJ2ZXIiICJDbG9uZSBsZSByZXBvIEdpdE9wcyBldCByZW5kIGxlcyBtYW5pZmVzdHMgSGVsbS4iCiAgICAgICAgICAgICAgICBkZXggICAgICAgID0gY29tcG9uZW50ICJEZXgiICJTU08gR2l0SHViIChtZW1icmVzIGRlIGwnb3JnKS4iCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIHJvbGxvdXRzICAgPSBjb250YWluZXIgIkFyZ28gUm9sbG91dHMiICJEw6lwbG9pZW1lbnQgcHJvZ3Jlc3NpZiBjYW5hcmkgKDI1LzUwLzEwMCAlKS4iICJhcmdvLXJvbGxvdXRzIChIZWxtKSIKICAgICAgICAgICAga2V5dmF1bHREYiA9IGNvbnRhaW5lciAiQXp1cmUgS2V5IFZhdWx0IiAiU2VjcmV0cyBhcHBsaWNhdGlmcyArIGNyZWRlbnRpYWxzIEdIQ1IuIiAiQXp1cmUgKFBhYVMpIiAiRGF0YWJhc2UiCiAgICAgICAgfQoKICAgICAgICAvLyAtLS0gUmVsYXRpb25zIG5pdmVhdSBjb250ZXh0ZSAtLS0KICAgICAgICBjbGllbnQgLT4gc2hvcCAiTmF2aWd1ZSBldCBhY2jDqHRlIiAiSFRUUFMiCiAgICAgICAgYWRtaW4gIC0+IHNob3AgIkFkbWluaXN0cmUiICJIVFRQUyIKICAgICAgICBkZXYgICAgLT4gZ2l0aHViICJQdXNoLCBQdWxsIFJlcXVlc3RzIiAiZ2l0IgogICAgICAgIGRldiAgICAtPiBzaG9wICJPcMOocmUgdmlhIEFyZ28gQ0QiICJIVFRQUyIKICAgICAgICBzaG9wIC0+IGNsb3VkZmxhcmUgIkVzdCByw6lzb2x1IHZpYSIgIkROUyIKICAgICAgICBzaG9wIC0+IGxldHNlbmNyeXB0ICJPYnRpZW50IHNlcyBjZXJ0aWZpY2F0cyIgIkFDTUUgRE5TLTAxIgogICAgICAgIHNob3AgLT4gZ2l0aHViICJUaXJlIGltYWdlcyBldCBtYW5pZmVzdHMgR2l0T3BzIiAiSFRUUFMiCiAgICAgICAgc2hvcCAtPiBhenVyZSAiUydleMOpY3V0ZSBzdXIgLyBsaXQgc2VzIHNlY3JldHMiICJBUEkgQXp1cmUiCgogICAgICAgIC8vIC0tLSBSZWxhdGlvbnMgbml2ZWF1IGNvbnRlbmV1ciAtLS0KICAgICAgICBjbGllbnQgLT4gIGFwaXNpeCAiSFRUUFMiICI0NDMiCiAgICAgICAgYWRtaW4gIC0+ICBhcGlzaXggIkhUVFBTIiAiNDQzIgogICAgICAgIGRldiAgICAtPiAgYXBpc2l4ICJBY2PDqGRlIMOgIGwnVUkgQXJnbyBDRCIgIkhUVFBTIgoKICAgICAgICAgYXBpc2l4IC0+ICBzdG9yZWZyb250ICJtaWNoZWxpbi5zaG9zdC5mciIgIkhUVFAiCiAgICAgICAgIGFwaXNpeCAtPiAgYmFja29mZmljZSAiYWRtaW4ubWljaGVsaW4uc2hvc3QuZnIiICJIVFRQIgogICAgICAgICBhcGlzaXggLT4gIGFwaSAiYXBpLm1pY2hlbGluLnNob3N0LmZyIiAiSFRUUCIKICAgICAgICAgYXBpc2l4IC0+ICBhcmdvY2QgImFyZ29jZC5taWNoZWxpbi5zaG9zdC5mciIgIkhUVFAiCiAgICAgICAgIHN0b3JlZnJvbnQgLT4gIGFwaSAiQXBwZWxzIEFQSSIgIkhUVFBTIgoKICAgICAgICAgYXJnb2NkIC0+ICBzdG9yZWZyb250ICJBcHBsaXF1ZSBsZXMgbWFuaWZlc3RzIgogICAgICAgICBhcmdvY2QgLT4gIGJhY2tvZmZpY2UgIkFwcGxpcXVlIGxlcyBtYW5pZmVzdHMiCiAgICAgICAgIGFyZ29jZCAtPiAgYXBpICJBcHBsaXF1ZSBsZXMgbWFuaWZlc3RzIgogICAgICAgICBhcmdvY2QgLT4gZ2l0aHViICJSw6ljb25jaWxpZSBkZXB1aXMgbGUgcmVwbyBHaXRPcHMiICJIVFRQUyIKICAgICAgICAgcm9sbG91dHMgLT4gIGFwaSAiUGlsb3RlIGxlIGNhbmFyaSIKCiAgICAgICAgIGNlcnRtZ3IgLT4gbGV0c2VuY3J5cHQgIsOJbWV0L3Jlbm91dmVsbGUiICJBQ01FIEROUy0wMSIKICAgICAgICAgY2VydG1nciAtPiAgYXBpc2l4ICJGb3Vybml0IGxlIGNlcnRpZmljYXQgd2lsZGNhcmQiCiAgICAgICAgIGVzbyAtPiAga2V5dmF1bHREYiAiTGl0IGxlcyBzZWNyZXRzIiAiV29ya2xvYWQgSWRlbnRpdHkiCiAgICAgICAgIGVzbyAtPiAgYXBpICJNYXTDqXJpYWxpc2UgbGVzIFNlY3JldHMgSzhzIgogICAgICAgICBzdG9yZWZyb250IC0+IGdpdGh1YiAiUHVsbCBpbWFnZSIgIkhUVFBTIgogICAgICAgICBhcGkgLT4gZ2l0aHViICJQdWxsIGltYWdlIiAiSFRUUFMiCiAgICAgICAgY2xvdWRmbGFyZSAtPiAgYXBpc2l4ICJBIOKGkiBJUCBwdWJsaXF1ZSBBUElTSVgiICJETlMiCgogICAgICAgIC8vIC0tLSBSZWxhdGlvbnMgbml2ZWF1IGNvbXBvc2FudCAoQXJnbyBDRCkgLS0tCiAgICAgICAgIHJvb3QgLT4gIGFwcHNldFByb2QgIkTDqWNsYXJlIgogICAgICAgICByb290IC0+ICBhcHBzZXRQcmV2ICJEw6ljbGFyZSIKICAgICAgICAgYXBwc2V0UHJvZCAtPiAgYXBwQ3RybCAiR8OpbsOocmUgbGVzIEFwcGxpY2F0aW9ucyBwcm9kIgogICAgICAgICBhcHBzZXRQcmV2IC0+ICBhcHBDdHJsICJHw6luw6hyZSBsZXMgQXBwbGljYXRpb25zIHByZXZpZXciCiAgICAgICAgIHJlcG9TZXJ2ZXIgLT4gZ2l0aHViICJDbG9uZSArIHJlbmQgSGVsbSIKICAgICAgICAgYXBwQ3RybCAtPiAgcmVwb1NlcnZlciAiRGVtYW5kZSBsZXMgbWFuaWZlc3RzIHJlbmR1cyIKICAgICAgICAgYXBwQ3RybCAtPiAgYXBpICJBcHBsaXF1ZSAoc3luYy9zZWxmSGVhbCkiCiAgICAgICAgZGV2IC0+ICBkZXggIkxvZ2luIFNTTyBHaXRIdWIiCgogICAgICAgIC8vIC0tLSBFbnZpcm9ubmVtZW50IGRlIGTDqXBsb2llbWVudCAtLS0KICAgICAgICBkZXBsb3ltZW50RW52aXJvbm1lbnQgIlByb2R1Y3Rpb24iIHsKICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIk1pY3Jvc29mdCBBenVyZSDigJQgV2VzdCBFdXJvcGUiICIiICJBenVyZSIgewogICAgICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgInJnLWhhY2stYWtzLXdlLTAxIiAiIiAiUmVzb3VyY2UgR3JvdXAiIHsKICAgICAgICAgICAgICAgICAgICBkZXBsb3ltZW50Tm9kZSAiQUtTIOKAlCBha3MtaGFjay13ZS0wMSIgIiIgIkt1YmVybmV0ZXMgKHBsYW4gRnJlZSwgT0lEQyArIFdvcmtsb2FkIElkZW50aXR5KSIgewoKICAgICAgICAgICAgICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIm5hbWVzcGFjZTogYXBpc2l4IiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBhcGlzaXhJbnN0ID0gY29udGFpbmVySW5zdGFuY2UgIGFwaXNpeAogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIGRlcGxveW1lbnROb2RlICJuYW1lc3BhY2U6IHByb2QiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNmSW5zdCAgPSBjb250YWluZXJJbnN0YW5jZSAgc3RvcmVmcm9udAogICAgICAgICAgICAgICAgICAgICAgICAgICAgYm9JbnN0ICA9IGNvbnRhaW5lckluc3RhbmNlICBiYWNrb2ZmaWNlCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBhcGlJbnN0ID0gY29udGFpbmVySW5zdGFuY2UgIGFwaQogICAgICAgICAgICAgICAgICAgICAgICAgICAgcm9JbnN0ICA9IGNvbnRhaW5lckluc3RhbmNlICByb2xsb3V0cwogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIGRlcGxveW1lbnROb2RlICJuYW1lc3BhY2U6IGFyZ29jZCIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgYXJnb0luc3QgPSBjb250YWluZXJJbnN0YW5jZSAgYXJnb2NkCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIm5hbWVzcGFjZXMgcGxhdGVmb3JtZSIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgY21JbnN0ICA9IGNvbnRhaW5lckluc3RhbmNlICBjZXJ0bWdyCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBlc29JbnN0ID0gY29udGFpbmVySW5zdGFuY2UgIGVzbwogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIGt2Tm9kZSA9IGluZnJhc3RydWN0dXJlTm9kZSAiQXp1cmUgS2V5IFZhdWx0IiAiU2VjcmV0cyBhcHAgKyBHSENSIChSQkFDLCBXb3JrbG9hZCBJZGVudGl0eSkuIiAiQXp1cmUiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBkZXBsb3ltZW50Tm9kZSAicmctaGFjay1ha3Mtbm9kZXMtd2UtMDEiICIiICJSZXNvdXJjZSBHcm91cCAoZ8OpcsOpIHBhciBBS1MpIiB7CiAgICAgICAgICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIlZNU1Mg4oCUIHBvb2wgc3lzdGVtIiAiU3RhbmRhcmRfRDJzX3Y0IMK3IGF1dG9zY2FsZSAy4oaSMyDCtyBVYnVudHUiICIiIHsKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgbGJOb2RlICA9IGluZnJhc3RydWN0dXJlTm9kZSAiU3RhbmRhcmQgTG9hZCBCYWxhbmNlciIgIiIgIkF6dXJlIgogICAgICAgICAgICAgICAgICAgIHBpcE5vZGUgPSBpbmZyYXN0cnVjdHVyZU5vZGUgIklQIHB1YmxpcXVlIHN0YXRpcXVlIiAicGlwLWhhY2stYXBpc2l4LXdlLTAxIMK3IDIwLjE2MC4yMjguMzEiICJBenVyZSIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgICAgICBkZXBsb3ltZW50Tm9kZSAiQ2xvdWRmbGFyZSIgIiIgIkROUyAoRE5TLW9ubHkpIiAiRXh0ZXJuYWwiIHsKICAgICAgICAgICAgICAgIGNmTm9kZSA9IGluZnJhc3RydWN0dXJlTm9kZSAiQ2xvdWRmbGFyZSBETlMiICJBIG1pY2hlbGluLnNob3N0LmZyICsgKi5taWNoZWxpbi5zaG9zdC5mci4iICJFeHRlcm5hbCIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgY2ZOb2RlIC0+IHBpcE5vZGUgIlLDqXNvdXQgdmVycyIKICAgICAgICAgICAgcGlwTm9kZSAtPiBsYk5vZGUgIkZyb250LWVuZCBMQiIKICAgICAgICAgICAgbGJOb2RlIC0+IGFwaXNpeEluc3QgIlRyYWZpYyA0NDMiCiAgICAgICAgICAgIGVzb0luc3QgLT4ga3ZOb2RlICJXb3JrbG9hZCBJZGVudGl0eSIKICAgICAgICB9CiAgICB9CgogICAgdmlld3MgewogICAgICAgIHN5c3RlbUNvbnRleHQgc2hvcCAiQ29udGV4dGUiICJOaXZlYXUgMSDigJQgQ29udGV4dGUgc3lzdMOobWUuIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgc2hvcCAiQ29udGVuZXVycyIgIk5pdmVhdSAyIOKAlCBDb250ZW5ldXJzLiIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCB0YgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50ICBhcmdvY2QgIkNvbXBvc2FudHMtQXJnb0NEIiAiTml2ZWF1IDMg4oCUIENvbXBvc2FudHMgZHUgbW90ZXVyIEdpdE9wcy4iIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9sYXlvdXQgdGIKICAgICAgICB9CgogICAgICAgIGRlcGxveW1lbnQgc2hvcCAiUHJvZHVjdGlvbiIgIkRlcGxvaWVtZW50IiAiUHJvamVjdGlvbiBzdXIgQXp1cmUgLyBBS1MuIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBzdHlsZXMgewogICAgICAgICAgICBlbGVtZW50ICJQZXJzb24iIHsKICAgICAgICAgICAgICAgIHNoYXBlIHBlcnNvbgogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDg0MjdiCiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiU29mdHdhcmUgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMxMTY4YmQKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJFeHRlcm5hbCIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjOTk5OTk5CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ29udGFpbmVyIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM0MzhkZDUKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJDb21wb25lbnQiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzg1YmJmMAogICAgICAgICAgICAgICAgY29sb3IgIzAwMDAwMAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkRhdGFiYXNlIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBjeWxpbmRlcgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkF6dXJlIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwMDc4ZDQKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJJbmZyYXN0cnVjdHVyZSBOb2RlIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwYjgwNDMKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH0KfQ==",
+    "structurizr.inspection.info" : "0",
+    "structurizr.inspection.ignore" : "0",
+    "structurizr.inspection.warning" : "0"
+  },
+  "views" : {
+    "componentViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "15",
+      "description" : "Niveau 3 — Composants du moteur GitOps.",
+      "elements" : [ {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "6",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "11",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "16",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "17",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "19",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "20",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "21",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Composants-ArgoCD",
+      "name" : "Component View: Plateforme Michelin Vélo - Argo CD",
+      "order" : 3,
+      "relationships" : [ {
+        "id" : "26"
+      }, {
+        "id" : "50"
+      }, {
+        "id" : "53"
+      }, {
+        "id" : "54"
+      }, {
+        "id" : "55"
+      }, {
+        "id" : "56"
+      }, {
+        "id" : "57"
+      }, {
+        "id" : "58"
+      }, {
+        "id" : "59"
+      }, {
+        "id" : "60"
+      } ]
+    } ],
+    "configuration" : {
+      "styles" : {
+        "elements" : [ {
+          "background" : "#0078d4",
+          "color" : "#ffffff",
+          "tag" : "Azure"
+        }, {
+          "background" : "#85bbf0",
+          "color" : "#000000",
+          "tag" : "Component"
+        }, {
+          "background" : "#438dd5",
+          "color" : "#ffffff",
+          "tag" : "Container"
+        }, {
+          "shape" : "Cylinder",
+          "tag" : "Database"
+        }, {
+          "background" : "#999999",
+          "color" : "#ffffff",
+          "tag" : "External"
+        }, {
+          "background" : "#0b8043",
+          "color" : "#ffffff",
+          "tag" : "Infrastructure Node"
+        }, {
+          "background" : "#08427b",
+          "color" : "#ffffff",
+          "shape" : "Person",
+          "tag" : "Person"
+        }, {
+          "background" : "#1168bd",
+          "color" : "#ffffff",
+          "tag" : "Software System"
+        } ]
+      },
+      "terminology" : { }
+    },
+    "containerViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "description" : "Niveau 2 — Conteneurs.",
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "6",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "11",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "12",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "13",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "14",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "15",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "22",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "23",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "Conteneurs",
+      "name" : "Container View: Plateforme Michelin Vélo",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "26"
+      }, {
+        "id" : "32"
+      }, {
+        "id" : "33"
+      }, {
+        "id" : "34"
+      }, {
+        "id" : "35"
+      }, {
+        "id" : "36"
+      }, {
+        "id" : "37"
+      }, {
+        "id" : "38"
+      }, {
+        "id" : "39"
+      }, {
+        "id" : "40"
+      }, {
+        "id" : "41"
+      }, {
+        "id" : "42"
+      }, {
+        "id" : "43"
+      }, {
+        "id" : "44"
+      }, {
+        "id" : "45"
+      }, {
+        "id" : "46"
+      }, {
+        "id" : "47"
+      }, {
+        "id" : "48"
+      }, {
+        "id" : "49"
+      }, {
+        "id" : "50"
+      }, {
+        "id" : "51"
+      }, {
+        "id" : "61"
+      } ],
+      "softwareSystemId" : "8"
+    } ],
+    "deploymentViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "description" : "Projection sur Azure / AKS.",
+      "elements" : [ {
+        "id" : "62",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "63",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "64",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "65",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "66",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "67",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "68",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "70",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "72",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "75",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "77",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "78",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "83",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "84",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "86",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "88",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "89",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "91",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "92",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "93",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "94",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "environment" : "Production",
+      "key" : "Deploiement",
+      "name" : "Deployment View: Plateforme Michelin Vélo - Production",
+      "order" : 4,
+      "relationships" : [ {
+        "id" : "69"
+      }, {
+        "id" : "71"
+      }, {
+        "id" : "73"
+      }, {
+        "id" : "74"
+      }, {
+        "id" : "76"
+      }, {
+        "id" : "79"
+      }, {
+        "id" : "80"
+      }, {
+        "id" : "81"
+      }, {
+        "id" : "82"
+      }, {
+        "id" : "85"
+      }, {
+        "id" : "87"
+      }, {
+        "id" : "95"
+      }, {
+        "id" : "96"
+      }, {
+        "id" : "97"
+      }, {
+        "id" : "98"
+      } ],
+      "softwareSystemId" : "8"
+    } ],
+    "systemContextViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "description" : "Niveau 1 — Contexte système.",
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "6",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "7",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "8",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "key" : "Contexte",
+      "name" : "System Context View: Plateforme Michelin Vélo",
+      "order" : 1,
+      "relationships" : [ {
+        "id" : "24"
+      }, {
+        "id" : "25"
+      }, {
+        "id" : "26"
+      }, {
+        "id" : "27"
+      }, {
+        "id" : "28"
+      }, {
+        "id" : "29"
+      }, {
+        "id" : "30"
+      }, {
+        "id" : "31"
+      }, {
+        "id" : "52"
+      } ],
+      "softwareSystemId" : "8"
+    } ]
+  }
+}

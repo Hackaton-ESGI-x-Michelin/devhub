@@ -1,112 +1,73 @@
-workspace "Michelin Vélo" "Modèle C4 de la plateforme e-commerce Michelin Vélo (hackathon ESGI × Michelin)." {
-
-    !identifiers hierarchical
+workspace "Michelin Vélo" "Modèle C4 métier de l'e-commerce Michelin Vélo (hackathon ESGI × Michelin)." {
 
     model {
         // --- Personnes ---
-        client = person "Client" "Achète des produits de la gamme Michelin Vélo."
-        admin  = person "Administrateur" "Gère le catalogue, les commandes et le contenu."
-        dev    = person "Développeur / DevOps" "Livre le code et opère la plateforme."
+        client = person "Client" "Parcourt le catalogue et achète des produits Michelin Vélo."
 
         // --- Systèmes externes ---
-        cloudflare  = softwareSystem "Cloudflare DNS" "Résolution DNS de *.michelin.shost.fr (DNS-only)." "External"
-        letsencrypt = softwareSystem "Let's Encrypt" "Autorité de certification ACME (TLS)." "External"
-        github      = softwareSystem "GitHub + GHCR" "Code, CI/CD (Actions) et registre d'images privé." "External"
-        azure       = softwareSystem "Microsoft Azure" "AKS, Key Vault, identité managée." "External"
+        payment = softwareSystem "Prestataire de paiement" "Encaissement sécurisé des commandes." "External"
 
-        // --- Système principal ---
-        shop = softwareSystem "Plateforme Michelin Vélo" "Boutique e-commerce premium livrée en continu sur AKS." {
+        // --- Système principal (blocs métier uniquement) ---
+        shop = softwareSystem "E-commerce Michelin Vélo" "Boutique en ligne premium : front e-commerce + API." {
 
-            storefront = container "Storefront" "Boutique client." "Next.js (standalone, :3000)"
-            backoffice = container "Back-office" "Administration." "Frontend (:80)"
-            api        = container "API" "Données, commandes, paiement." "Backend (:8080)"
+            apisix = container "APISIX" "Porte d'entrée unique : HTTPS, routage par hôte." "Apache APISIX"
+            front  = container "Front e-commerce" "Catalogue, panier, tunnel d'achat." "Next.js (standalone, :3000)"
 
-            apisix     = container "APISIX" "Gateway/ingress unique : terminaison TLS, routage par hôte." "Apache APISIX (Helm)"
-            certmgr    = container "cert-manager" "Émet le certificat wildcard Let's Encrypt (DNS-01)." "jetstack (Helm)"
-            eso        = container "External Secrets" "Synchronise Azure Key Vault → Secrets Kubernetes." "ESO (Helm)"
-
-            argocd     = container "Argo CD" "Réconciliation GitOps des applications." "argo-cd (Helm)" {
-                root       = component "platform-root" "App-of-apps : déclare les ApplicationSets."
-                appsetProd = component "ApplicationSet prod" "Liste : storefront / back-office / api → namespace prod."
-                appsetPrev = component "ApplicationSet previews" "Générateur Pull Request → namespaces pr-<n>."
-                appCtrl    = component "Application Controller" "Sync + selfHeal du cluster vers Git."
-                repoServer = component "Repo Server" "Clone le repo GitOps et rend les manifests Helm."
-                dex        = component "Dex" "SSO GitHub (membres de l'org)."
+            api = container "API" "Catalogue, commandes, clients, paiement." "Backend (:8080)" {
+                auth    = component "Authentification" "Sessions / JWT."
+                catalog = component "Catalogue" "Produits, stocks."
+                cart    = component "Panier" "Lignes, total."
+                orders  = component "Commandes" "Création, suivi."
+                pay     = component "Paiement" "Orchestration de l'encaissement."
             }
 
-            rollouts   = container "Argo Rollouts" "Déploiement progressif canari (25/50/100 %)." "argo-rollouts (Helm)"
-            keyvaultDb = container "Azure Key Vault" "Secrets applicatifs + credentials GHCR." "Azure (PaaS)" "Database"
+            database = container "Base de données" "Produits, commandes, clients." "SGBD" "Database"
+            keyvault = container "Azure Key Vault" "Secrets consommés par l'API (DATABASE_URL, JWT_SECRET…)." "Azure (PaaS)" "Database"
         }
 
-        // --- Relations niveau contexte ---
-        client -> shop "Navigue et achète" "HTTPS"
-        admin  -> shop "Administre" "HTTPS"
-        dev    -> github "Push, Pull Requests" "git"
-        dev    -> shop "Opère via Argo CD" "HTTPS"
-        shop -> cloudflare "Est résolu via" "DNS"
-        shop -> letsencrypt "Obtient ses certificats" "ACME DNS-01"
-        shop -> github "Tire images et manifests GitOps" "HTTPS"
-        shop -> azure "S'exécute sur / lit ses secrets" "API Azure"
+        // --- Niveau 1 : contexte ---
+        client -> shop "Parcourt et achète" "HTTPS"
+        shop -> payment "Initie les paiements" "HTTPS/API"
 
-        // --- Relations niveau conteneur ---
-        client -> shop.apisix "HTTPS" "443"
-        admin  -> shop.apisix "HTTPS" "443"
-        dev    -> shop.apisix "Accède à l'UI Argo CD" "HTTPS"
+        // --- Niveau 2 : conteneurs ---
+        client -> apisix "Navigue / achète" "HTTPS 443"
+        apisix -> front "michelin.shost.fr" "HTTP"
+        apisix -> api "api.michelin.shost.fr" "HTTP"
+        front -> api "Appels API REST" "HTTPS"
+        api -> database "Lit / écrit"
+        api -> keyvault "Récupère ses secrets" "Workload Identity"
+        api -> payment "Paiement" "HTTPS/API"
 
-        shop.apisix -> shop.storefront "michelin.shost.fr" "HTTP"
-        shop.apisix -> shop.backoffice "admin.michelin.shost.fr" "HTTP"
-        shop.apisix -> shop.api "api.michelin.shost.fr" "HTTP"
-        shop.apisix -> shop.argocd "argocd.michelin.shost.fr" "HTTP"
-        shop.storefront -> shop.api "Appels API" "HTTPS"
+        // --- Niveau 3 : composants de l'API ---
+        front -> auth "Authentifie"
+        front -> catalog "Consulte le catalogue"
+        front -> cart "Gère le panier"
+        cart -> orders "Valide le panier"
+        orders -> pay "Déclenche le paiement"
+        auth -> keyvault "Clé de signature JWT"
+        catalog -> database "Lit"
+        orders -> database "Lit / écrit"
+        pay -> payment "Encaisse"
 
-        shop.argocd -> shop.storefront "Applique les manifests"
-        shop.argocd -> shop.backoffice "Applique les manifests"
-        shop.argocd -> shop.api "Applique les manifests"
-        shop.argocd -> github "Réconcilie depuis le repo GitOps" "HTTPS"
-        shop.rollouts -> shop.api "Pilote le canari"
-
-        shop.certmgr -> letsencrypt "Émet/renouvelle" "ACME DNS-01"
-        shop.certmgr -> shop.apisix "Fournit le certificat wildcard"
-        shop.eso -> shop.keyvaultDb "Lit les secrets" "Workload Identity"
-        shop.eso -> shop.api "Matérialise les Secrets K8s"
-        shop.storefront -> github "Pull image" "HTTPS"
-        shop.api -> github "Pull image" "HTTPS"
-        cloudflare -> shop.apisix "A → IP publique APISIX" "DNS"
-
-        // --- Relations niveau composant (Argo CD) ---
-        shop.argocd.root -> shop.argocd.appsetProd "Déclare"
-        shop.argocd.root -> shop.argocd.appsetPrev "Déclare"
-        shop.argocd.appsetProd -> shop.argocd.appCtrl "Génère les Applications prod"
-        shop.argocd.appsetPrev -> shop.argocd.appCtrl "Génère les Applications preview"
-        shop.argocd.repoServer -> github "Clone + rend Helm"
-        shop.argocd.appCtrl -> shop.argocd.repoServer "Demande les manifests rendus"
-        shop.argocd.appCtrl -> shop.api "Applique (sync/selfHeal)"
-        dev -> shop.argocd.dex "Login SSO GitHub"
-
-        // --- Environnement de déploiement ---
+        // --- Déploiement (projection des conteneurs métier sur Azure / AKS) ---
         deploymentEnvironment "Production" {
             deploymentNode "Microsoft Azure — West Europe" "" "Azure" {
                 deploymentNode "rg-hack-aks-we-01" "" "Resource Group" {
-                    deploymentNode "AKS — aks-hack-we-01" "" "Kubernetes (plan Free, OIDC + Workload Identity)" {
-
+                    deploymentNode "AKS — aks-hack-we-01" "" "Kubernetes (plan Free)" {
                         deploymentNode "namespace: apisix" {
-                            apisixInst = containerInstance shop.apisix
+                            apisixInst = containerInstance apisix
                         }
                         deploymentNode "namespace: prod" {
-                            sfInst  = containerInstance shop.storefront
-                            boInst  = containerInstance shop.backoffice
-                            apiInst = containerInstance shop.api
-                            roInst  = containerInstance shop.rollouts
-                        }
-                        deploymentNode "namespace: argocd" {
-                            argoInst = containerInstance shop.argocd
-                        }
-                        deploymentNode "namespaces plateforme" {
-                            cmInst  = containerInstance shop.certmgr
-                            esoInst = containerInstance shop.eso
+                            frontInst = containerInstance front
+                            apiInst   = containerInstance api
                         }
                     }
-                    kvNode = infrastructureNode "Azure Key Vault" "Secrets app + GHCR (RBAC, Workload Identity)." "Azure"
+                    deploymentNode "Azure Key Vault" "" "PaaS" {
+                        kvInst = containerInstance keyvault
+                    }
+                    deploymentNode "Base de données" "" "PaaS / managée" {
+                        dbInst = containerInstance database
+                    }
                 }
                 deploymentNode "rg-hack-aks-nodes-we-01" "" "Resource Group (géré par AKS)" {
                     deploymentNode "VMSS — pool system" "Standard_D2s_v4 · autoscale 2→3 · Ubuntu" "" {
@@ -115,12 +76,13 @@ workspace "Michelin Vélo" "Modèle C4 de la plateforme e-commerce Michelin Vél
                     pipNode = infrastructureNode "IP publique statique" "pip-hack-apisix-we-01 · 20.160.228.31" "Azure"
                 }
             }
-            cfNode = infrastructureNode "Cloudflare DNS" "A michelin.shost.fr + *.michelin.shost.fr (DNS-only)." "External"
+            deploymentNode "Cloudflare" "" "DNS (DNS-only)" "External" {
+                cfNode = infrastructureNode "Cloudflare DNS" "A michelin.shost.fr + *.michelin.shost.fr." "External"
+            }
 
             cfNode -> pipNode "Résout vers"
             pipNode -> lbNode "Front-end LB"
             lbNode -> apisixInst "Trafic 443"
-            esoInst -> kvNode "Workload Identity"
         }
     }
 
@@ -130,17 +92,17 @@ workspace "Michelin Vélo" "Modèle C4 de la plateforme e-commerce Michelin Vél
             autolayout lr
         }
 
-        container shop "Conteneurs" "Niveau 2 — Conteneurs." {
+        container shop "Conteneurs" "Niveau 2 — Conteneurs métier." {
             include *
             autolayout tb
         }
 
-        component shop.argocd "Composants-ArgoCD" "Niveau 3 — Composants du moteur GitOps." {
+        component api "Composants-API" "Niveau 3 — Composants de l'API." {
             include *
             autolayout tb
         }
 
-        deployment shop "Production" "Déploiement" "Projection sur Azure / AKS." {
+        deployment shop "Production" "Deploiement" "Projection des conteneurs métier sur Azure / AKS." {
             include *
             autolayout lr
         }
