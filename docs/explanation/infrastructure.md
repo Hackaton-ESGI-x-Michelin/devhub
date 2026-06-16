@@ -163,6 +163,9 @@ flowchart TB
   classDef ext fill:#999999,stroke:#6b6b6b,color:#fff;
 ```
 
+??? abstract "Vue de déploiement Structurizr (conteneurs métier sur Azure / AKS, SVG exporté du DSL)"
+    ![Vue de déploiement — rendu Structurizr](../assets/structurizr/deploiement.svg){ loading=lazy }
+
 !!! tip "Une seule porte d'entrée, un seul certificat"
     Tout le trafic entre par le `Service` LoadBalancer **unique** d'APISIX (IP
     publique statique). La ressource `ApisixTls` sert le certificat wildcard

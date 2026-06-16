@@ -5,3 +5,4 @@ __pycache__/
 # Structurizr Lite/Local runtime cache + generated workspace
 diagrams/structurizr/.structurizr/
 diagrams/structurizr/workspace.json
+diagrams/structurizr/export/
